@@ -13,5 +13,6 @@ jobs:
         with:
           java-version: '18'
           distribution: 'adopt'
+      - uses: browser-actions/setup-chrome@latest
       - name: test with Maven
         run: mvn test
