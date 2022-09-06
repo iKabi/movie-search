@@ -11,6 +11,7 @@ import java.util.Map;
 @Slf4j
 public abstract class AbstractMovieInfoContainer implements MovieInfoContainer {
 
+	public static final ZoneId UTC = ZoneId.of("UTC");
 	public static final Map<String, ZoneId> COUNTRY_NAME_TO_ZONE_ID = Map.ofEntries(
 		Map.entry("United States", ZoneId.of("America/New_York")),
 		Map.entry("India", ZoneId.of("Asia/Kolkata"))
@@ -27,9 +28,10 @@ public abstract class AbstractMovieInfoContainer implements MovieInfoContainer {
 		return new MovieInfo(country, releaseDate);
 	}
 
-	protected ZonedDateTime convertToZDT(LocalDate onlyDate, String zone) {
+	protected ZonedDateTime unixTime(LocalDate onlyDate, String zone) {
 		if (isValidKey(zone)) {
-			return onlyDate.atStartOfDay(COUNTRY_NAME_TO_ZONE_ID.get(zone));
+			return onlyDate.atStartOfDay(COUNTRY_NAME_TO_ZONE_ID.get(zone))
+				.withZoneSameInstant(UTC);
 		}
 		log.error("Unknown country key '{}' detected", zone);
 		throw new IllegalArgumentException(zone);

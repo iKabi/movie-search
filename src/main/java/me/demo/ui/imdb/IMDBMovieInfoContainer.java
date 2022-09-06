@@ -43,7 +43,7 @@ class IMDBMovieInfoContainer extends AbstractMovieInfoContainer {
 		var dateWord = matcher.group(DATE_GROUP);
 		var localDate = LocalDate.parse(dateWord, DATE_PATTERN);
 		var countrySuffix = matcher.group(COUNTRY_GROUP);
-		return convertToZDT(localDate, countrySuffix);
+		return unixTime(localDate, countrySuffix);
 	}
 
 }
