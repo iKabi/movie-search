@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Movie Search">
+
+    <listeners>
+        <listener class-name="me.demo.listener.UIAssertionFailureListener"/>
+    </listeners>
+
+    <test name="Compare IMDB and Wiki Search Results">
+        <classes>
+            <class name="me.demo.test.MovieSearchCompareResultsTests"/>
+            <parameter name="movie" value="${movie}"/>
+        </classes>
+    </test>
+</suite>
