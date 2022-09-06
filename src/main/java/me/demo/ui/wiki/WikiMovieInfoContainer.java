@@ -31,7 +31,7 @@ class WikiMovieInfoContainer extends AbstractMovieInfoContainer {
 	protected ZonedDateTime readReleaseDate() {
 		var word = $(RELEASE_DATE).innerText();
 		var date = LocalDate.parse(word, DATE_PATTERN);
-		return convertToZDT(date, readCountry());
+		return unixTime(date, readCountry());
 	}
 
 }
